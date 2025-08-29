@@ -1,10 +1,54 @@
-version: '3.8'
+version: '3.9'
+
 services:
+  db:
+    image: postgres:16
+    container_name: fullstack_template_db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-appdb}
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   backend:
-    build: ./backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: fullstack_template_backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/${POSTGRES_DB}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      AUTH0_DOMAIN: ${AUTH0_DOMAIN}
+      AUTH0_AUDIENCE: ${AUTH0_AUDIENCE}
     ports:
       - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: fullstack_template_frontend
+    working_dir: /app
+    command: npm run dev -- --host 0.0.0.0 --port 5173
     ports:
-      - "3000:80"
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app:delegated
+      - /app/node_modules
+    depends_on:
+      - backend
+
+volumes:
+  db-data:
