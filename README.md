@@ -1,4 +1,4 @@
-# 🧬 Fullstack Template
+# Fullstack Template
 
 A modern fullstack starter built for speed, clarity, and repeatability. This monorepo includes a Spring Boot backend, a React frontend, and a PostgreSQL database — all containerized and wired together with Docker Compose.
 
@@ -6,9 +6,9 @@ Fork this repo to kickstart your next project with secure authentication, databa
 
 ---
 
-## 🚀 What’s Inside
+## What’s Inside
 
-### 🧱 Monorepo Layout
+### Monorepo Layout
 
 ```
 fullstack-template/
@@ -39,7 +39,7 @@ fullstack-template/
 
 ---
 
-## 🪄 Getting Started
+## Getting Started
 
 ### 1. Fork the repo
 
@@ -88,11 +88,11 @@ docker compose up --build
 
 ---
 
-## 🧭 Where to Go Next
+## Where to Go Next
 
-- 🔧 Add CI/CD with GitHub Actions
-- 📦 Add Redis, Kafka, or other services via Compose
-- 🧑‍💻 Create a CLI to scaffold new apps from this template
+- Add CI/CD with GitHub Actions
+- Add Redis, Kafka, or other services via Compose
+- Create a CLI to scaffold new apps from this template
 
 ---
 
