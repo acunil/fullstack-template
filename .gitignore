@@ -1,0 +1,33 @@
+# Node
+node_modules/
+dist/
+.vite/
+.env
+.env.local
+.env.*.local
+
+# Docker
+*.pid
+*.sock
+*.log
+docker-compose.override.yml
+**/tmp/
+**/cache/
+
+# IntelliJ
+.idea/
+*.iml
+
+# System
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Misc
+*.swp
+*.swo
+*.bak
+*.tmp
