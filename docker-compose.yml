@@ -40,6 +40,8 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     container_name: fullstack_template_frontend
+    environment:
+      - VITE_BACKEND_URL=http://backend:8080
     working_dir: /app
     command: npm run dev -- --host 0.0.0.0 --port 5173
     ports:
