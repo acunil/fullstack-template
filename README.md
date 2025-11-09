@@ -5,6 +5,14 @@ A modern fullstack starter built for speed, clarity, and repeatability. This mon
 Fork this repo to kickstart your next project with secure authentication, database migrations, and hot-reloading dev workflows.
 
 ---
+# Table of Contents
+- [What’s Inside](#whats-inside)
+- [Getting Started](#getting-started)
+- [Local Development Without Docker](#local-development-without-docker)
+- [🛠 Customization Guide](#-customization-guide)
+- [Where to Go Next](#where-to-go-next)
+
+---
 
 ## What’s Inside
 
@@ -76,6 +84,35 @@ docker compose up --build
 
 ---
 
+## Local Development Without Docker
+
+**1. Start DB:**
+
+```bash
+docker compose up -d db
+```
+
+**2. Start backend (host JVM, uses application-local.yaml) from `backend/`:**
+
+```bash
+SPRING_PROFILES_ACTIVE=local ./gradlew bootRun
+```
+- Or IntelliJ Application run with VM option: `-Dspring.profiles.active=local`
+
+**3. Start frontend (host) from `frontend/`:**
+
+Ensure frontend/.env.local contains VITE_BACKEND_URL=http://localhost:8080
+
+```bash
+npm install && npm run dev
+```
+**4. Verify:**
+
+- Visit http://localhost:5173 and test API calls.
+- Backend Swagger UI at http://localhost:8080/swagger-ui.html use default login details `admin` / `admin`.
+
+---
+
 ## 🛠 Customization Guide
 
 | Task                        | How to do it                                  |
@@ -93,6 +130,4 @@ docker compose up --build
 - Add CI/CD with GitHub Actions
 - Add Redis, Kafka, or other services via Compose
 - Create a CLI to scaffold new apps from this template
-
----
 
