@@ -86,6 +86,13 @@ docker compose up --build
 
 ## Local Development Without Docker
 
+### Important:
+
+- The dockerized Postgres db must be running for all setups.
+- Only one instance of each service should be running at a time to avoid port conflicts.
+- **Do not mix and match:** run either all services via Docker Compose or all on local.
+
+
 **1. Start DB:**
 
 ```bash
@@ -101,7 +108,7 @@ SPRING_PROFILES_ACTIVE=local ./gradlew bootRun
 
 **3. Start frontend (host) from `frontend/`:**
 
-Ensure frontend/.env.local contains VITE_BACKEND_URL=http://localhost:8080
+- Ensure frontend/.env.local contains `VITE_BACKEND_URL=http://localhost:8080`
 
 ```bash
 npm install && npm run dev

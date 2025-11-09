@@ -20,6 +20,14 @@ const TestForm = () => {
 
     return (
         <div>
+            <header><h1>Example Component</h1></header>
+            <p>
+                This is an example component that will prove the frontend is talking to the backend.<br />
+                It should work in both local and docker deployments.<br />
+                Enter some text in the text box and submit.<br />
+                The backend response will give you the length of your input, if successful.
+            </p>
+
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -30,7 +38,7 @@ const TestForm = () => {
                 <button type="submit">Submit</button>
             </form>
             {response && <p>{response}</p>}
-        </div>
+        </div >
     );
 };
 
